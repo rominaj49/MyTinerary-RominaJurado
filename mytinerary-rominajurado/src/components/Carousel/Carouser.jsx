@@ -28,7 +28,7 @@ const Carouser = () => {
   return (
     <section className="my-24 mx-auto">
       <div>
-        <h2 className="text-5xl font-bold mb-10 text-gray-900 text-right mr-16">
+        <h2 className="text-5xl font-bold mb-10 text-gray-900 text-right mr-16 font-poppins">
           Popular
           <strong className="font-bold text-teal-600"> Mytineraries </strong>
         </h2>
