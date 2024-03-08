@@ -1,0 +1,20 @@
+
+body{
+ background-color: rgb(223, 223, 223);
+}
+body::-webkit-scrollbar {
+    width: 12px; 
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: rgb(15, 161, 166);
+    border-radius: 6px;
+  }
+  
+  body::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(47, 194, 199); 
+  }
+  
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
