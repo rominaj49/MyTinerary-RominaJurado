@@ -43,7 +43,7 @@ const Carouser = () => {
             <CarouserItem key={index} city={city} index={index} />
           ))}
           <button onClick={next} disabled={startIndex + cantCards >= totalCities}>
-            <ArrowForwardIosIcon color="error" />
+            <ArrowForwardIosIcon color="error"/>
           </button>
         </div>
       </article>

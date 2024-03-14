@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const CallToAction = () => {
   
     return(
-<div className="container my-24 mx-auto md:px-6" id="section-call"  >
+<div className="container my-24 mx-auto md:px-6 " id="section-call"  >
 <h2 className="text-5xl font-bold mb-10 text-gray-900 text-left ml-14 font-poppins">Cities</h2>
   <section className="mb-32">
     <div className="flex flex-wrap">
@@ -26,7 +26,7 @@ const CallToAction = () => {
             On our travel page, we invite you to embark on a unique odyssey full of extraordinary experiences.
             From picturesque destinations to fascinating cultures, we offer you the chance to unleash your adventurous 
             spirit and immerse yourself in the unknown. Are you ready to live unforgettable moments and create memories
-           that will last a lifetime? Discover your next destination and make every journey a tale of adventure.
+            that will last a lifetime? Discover your next destination and make every journey a tale of adventure.
             </p>
             <button type="button" data-aos="zoom-in"
               className="rounded-full border-2 font-poppins border-neutral-50 px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-neutral-50 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-neutral-100 hover:bg-opacity-10 hover:text-neutral-100 focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-200 active:text-neutral-200"
