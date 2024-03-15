@@ -6,6 +6,8 @@ import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import CitieDetail from './components/CitieDetail';
+import {Provider} from 'react-redux';
+import store from "./redux/store";
 
 function App() {
   useEffect(() => {
@@ -15,6 +17,7 @@ function App() {
   return (
 
     <BrowserRouter>
+    <Provider store={store}>
       <Routes>
 
         <Route path='/' element={<Home/>}></Route>
@@ -22,6 +25,7 @@ function App() {
         <Route path='/cities/:id' element={<CitieDetail/>}></Route>
 
       </Routes>
+     </Provider>
     </BrowserRouter>
 
   );

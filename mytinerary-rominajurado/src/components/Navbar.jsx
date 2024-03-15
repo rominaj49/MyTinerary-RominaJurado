@@ -11,7 +11,7 @@ const NavBar = () => {
 		</div>
 		<div className="text-gray-500 order-3 w-full md:w-auto md:order-2 font-poppins">
 			<ul className="flex justify-between">
-				<li className="md:px-4 md:py-2 font-bold text-teal-600 text-xl">
+				<li className="md:px-4 md:py-2  hover:text-teal-500 text-xl">
 					<Link to="/">Home</Link></li>
 				<li className="md:px-4 md:py-2  hover:text-teal-500 text-xl ">
 				    <Link to="/cities">Cities</Link></li>

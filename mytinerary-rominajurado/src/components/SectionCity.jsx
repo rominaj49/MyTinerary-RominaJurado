@@ -1,36 +1,34 @@
-import { getCities } from "../services/citiesQueries"
+import { getCities } from "../services/citiesQueries";
 import { useState, useEffect, useRef } from 'react';
-import CityItem from '../components/City/CityItem'
+import CityItem from '../components/City/CityItem';
+import { useSelector, useDispatch } from "react-redux";
+import { filterByName, load } from '../redux/actions/citiesActions';
 
 const SectionCity = () => {
-  const [cities, setCities] = useState([]);
-  const [filtrados, setFiltrados] = useState([]);
   const inputBusqueda = useRef(null);
 
+  const dispatch = useDispatch();
+  const {all, filtered, search} = useSelector((store) => store.cities);
+
+
   useEffect(() => {
-    getCities().then((data) => {
-      setCities(data);
-      setFiltrados(data);
-    });
+    if(all.length == 0 ){
+      getCities().then((data) => {
+        dispatch(load(data));
+      });
+    }   
   }, []);
 
   const handleInput = () => {
-    const aux = filterByName(cities, inputBusqueda.current.value);
-    setFiltrados(aux);
+    dispatch(filterByName(inputBusqueda.current.value));
   };
 
-  const filterByName = (listaCities, value) =>
-    listaCities.filter((citie) =>
-      citie.name.toLowerCase().startsWith(value.toLowerCase())
-    );
-
-
-  const citiesCards = filtrados.map((citie) => (
+  const citiesCards = filtered.map((citie) => (
     <CityItem key={citie.id} city={citie} />
   ));
 
   return (
-    <section className="bg-gray-200" id="section-city">
+    <div className="bg-gray-200 " id="section-city">
       <div className="flex flex-col sm:flex-row">
         <div className="flex justify-center items-center">
           <h2 className="text-4xl font-bold text-gray-900 font-poppins mb-3 sm:mb-1 text-left ml-14">Explore Bookable Trips</h2>
@@ -49,16 +47,21 @@ const SectionCity = () => {
             id="search"
             onInput={handleInput}
             ref={inputBusqueda}
+            defaultValue={search}
             placeholder="Search City.."
           />
         </div>
       </div>
 
-      <section className="h-auto py-6  flex items-center justify-center flex-wrap">
-        {filtrados.length > 0 && citiesCards}
+      <section className="h-auto py-6 flex flex-wrap first-line:items-center justify-center ">
+        {filtered.length > 0 ? (
+          <>{citiesCards}</>
+        ):(
+          <h3 className="text-gray-700 font-poppins">There's not cities that match the search: "{search}"
+          </h3>
+        )}
       </section>
-
-    </section>
+    </div>
   );
 }
 export default SectionCity;
