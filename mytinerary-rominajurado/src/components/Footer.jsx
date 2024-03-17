@@ -2,7 +2,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import AirplaneTicketIcon from '@mui/icons-material/AirplaneTicket';
+import { Link } from 'react-router-dom';
 
 const Footer = () =>{
     return (
@@ -22,10 +22,10 @@ const Footer = () =>{
                   <h2 className="mb-6 text-lg font-semibold text-gray-900 uppercase dark:text-white">Navigate</h2>
                   <ul className="text-white font-medium">
                       <li className="mb-4">
-                          <a href="#section-home" className="hover:underline">Home</a>
+                      <Link to='/' className='hover:underline'>Home</Link>
                       </li>
                       <li>
-                          <a href="" className="hover:underline">Cities</a>
+                      <Link to='/cities' className='hover:underline'>Cities</Link>
                       </li>
                   </ul>
               </div>

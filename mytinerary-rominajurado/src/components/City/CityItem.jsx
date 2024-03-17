@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 
 
-const CityItem = ({ city}) => {
+const CityItem = ({city}) => {
     
     return (
-      <div className="bg-white w-72 h-96 shadow-md rounded m-3 hover-scale" data-aos="zoom-in">
+    <div className="bg-white w-72 h-96 shadow-md rounded m-3 hover-scale" data-aos="zoom-in">
       <div className="h-5/6 w-full ">
           <img className="w-full h-full object-cover rounded-t " src={city.image} alt={"imagen de: " + city.name} />
       </div>
@@ -13,7 +13,7 @@ const CityItem = ({ city}) => {
               <span className="text-lg font-semibold uppercase tracking-wide">{city.name}</span>
           </Link>
       </div>
-  </div>
+    </div>
      
   );
 }

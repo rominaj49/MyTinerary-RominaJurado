@@ -5,7 +5,7 @@ import Cities from './pages/Cities';
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import CitieDetail from './components/CitieDetail';
+import CitieDetail from './pages/CitieDetail';
 import {Provider} from 'react-redux';
 import store from "./redux/store";
 

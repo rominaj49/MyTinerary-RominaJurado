@@ -1,6 +1,6 @@
 import NavBar from "../components/Navbar"
-import BannerCity from "../components/BannerCity"
-import SectionCity from "../components/SectionCity"
+import BannerCity from "../components/City/BannerCity"
+import SectionCity from "../components/City/SectionCity"
 import Footer from "../components/Footer"
 const Cities = () => {
     

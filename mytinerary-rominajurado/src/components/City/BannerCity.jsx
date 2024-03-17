@@ -1,4 +1,4 @@
-import bannerImage from "../assets/img/simon-zhu-iaJH3_7EXSg-unsplash.jpg";
+import bannerImage from "../../assets/img/simon-zhu-iaJH3_7EXSg-unsplash.jpg";
 
 const BannerCity = () => {
 
@@ -8,8 +8,6 @@ const BannerCity = () => {
       section.scrollIntoView({ behavior: 'smooth' });
     }
   };
-  
-
   return(
   <div >
 <section className="relative bg-cover bg-center shadow-2xl " style={{ backgroundImage: `url(${bannerImage})` }}>

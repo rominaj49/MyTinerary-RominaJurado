@@ -5,6 +5,11 @@ export const load = createAction('loadCities', (cities)=>{
         payload:cities
     }
 })
+export const loadCity = createAction('loadCity', (city)=>{
+    return{
+        payload:city
+    }
+})
 
 export const filterByName = createAction('filterByName', ( value ) => {
     return{

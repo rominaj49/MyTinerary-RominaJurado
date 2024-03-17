@@ -1,22 +1,23 @@
-import { getCities } from "../services/citiesQueries";
+import { getCities } from "../../services/citiesQueries";
 import { useState, useEffect, useRef } from 'react';
-import CityItem from '../components/City/CityItem';
+import CityItem from './CityItem';
 import { useSelector, useDispatch } from "react-redux";
-import { filterByName, load } from '../redux/actions/citiesActions';
+import { filterByName, load } from '../../redux/actions/citiesActions';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 const SectionCity = () => {
   const inputBusqueda = useRef(null);
 
   const dispatch = useDispatch();
-  const {all, filtered, search} = useSelector((store) => store.cities);
+  const { all, filtered, search } = useSelector((store) => store.cities);
 
 
   useEffect(() => {
-    if(all.length == 0 ){
+    if (all.length == 0) {
       getCities().then((data) => {
         dispatch(load(data));
       });
-    }   
+    }
   }, []);
 
   const handleInput = () => {
@@ -27,9 +28,14 @@ const SectionCity = () => {
     <CityItem key={citie.id} city={citie} />
   ));
 
+  const clear = () => {
+    dispatch(filterByName('')); // Envía una acción con el valor de búsqueda vacío
+    inputBusqueda.current.value = ''; // Limpia el valor del input directamente
+  };
+
   return (
-    <div className="bg-gray-200 " id="section-city">
-      <div className="flex flex-col sm:flex-row">
+    <div className="bg-gray-200" id="section-city">
+      <div className="flex flex-col sm:flex-row ">
         <div className="flex justify-center items-center">
           <h2 className="text-4xl font-bold text-gray-900 font-poppins mb-3 sm:mb-1 text-left ml-14">Explore Bookable Trips</h2>
         </div>
@@ -50,13 +56,18 @@ const SectionCity = () => {
             defaultValue={search}
             placeholder="Search City.."
           />
+          <button
+            className="relative inset-y-0 right-0 px-3 text-gray-400 hover:text-gray-600"
+            onClick={clear}>
+            <DeleteForeverIcon/>
+          </button>
         </div>
       </div>
 
       <section className="h-auto py-6 flex flex-wrap first-line:items-center justify-center ">
         {filtered.length > 0 ? (
           <>{citiesCards}</>
-        ):(
+        ) : (
           <h3 className="text-gray-700 font-poppins">There's not cities that match the search: "{search}"
           </h3>
         )}

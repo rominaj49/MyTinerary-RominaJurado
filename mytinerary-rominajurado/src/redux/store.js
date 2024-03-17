@@ -2,7 +2,7 @@ import {configureStore} from '@reduxjs/toolkit'
 import citiesReducer from './reducers/citiesReducer'
 
 const store = {
-    cities: citiesReducer
+    cities: citiesReducer,
 }
 
 export default configureStore({

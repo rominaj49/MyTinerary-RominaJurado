@@ -1,17 +1,31 @@
-import {cities} from '../../data/data'
 import { useState, useEffect } from 'react'
 import CarouserItem from './CarouserItem'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import { getCities } from "../../services/citiesQueries"
+import { load } from '../../redux/actions/citiesActions';
+import { useSelector, useDispatch } from "react-redux";
 
 const Carouser = () => {
 
+  const dispatch = useDispatch();
   const cantCards = 4; //CANT CARDS Q MUESTRO EN LA PAG X SLIDER
-  const totalCities = 12; 
+  const totalCities = 12; //total a mostrar por slider
   const [startIndex, setStartIndex] = useState(0);
+  const city = useSelector((store) => store.cities.all);
 
-  const citys = cities.slice(0, totalCities); 
-  const currentCities = citys.slice(startIndex, startIndex + cantCards);
+ console.log(city)//sii me muesrtra
+
+
+ const citys = city.slice(0, totalCities);
+ const currentCities = citys.slice(startIndex, startIndex + cantCards);
+
+  useEffect(() => {
+      getCities().then((data) => {
+        dispatch(load(data));
+      }) 
+  }, []);
+
 
   const prev = () => {
     if (startIndex > 0) {
