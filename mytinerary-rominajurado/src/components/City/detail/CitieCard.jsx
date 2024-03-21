@@ -66,9 +66,7 @@ const CitieCard = () => {
               </div>
               {/* der */}
               <div className="md:w-1/2 p-4 relative z-10 flex flex-col justify-center items-center md:items-start">
-                <h1 className="text-4xl font-bold text-gray-800 mb-2">{citie.country}</h1>
-
-               
+                <h1 className="text-4xl font-bold text-gray-800 mb-2">{citie.country}</h1>              
                 <div className="flex flex-col">
                   <p className="font-semibold text-2xl text-gray-700 mb-2">{citie.name}</p>
                   <p className="text-gray-600 text-xl mb-2">{citie.description}</p>

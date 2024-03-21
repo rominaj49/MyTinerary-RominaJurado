@@ -28,13 +28,11 @@ const CallToAction = () => {
             spirit and immerse yourself in the unknown. Are you ready to live unforgettable moments and create memories
             that will last a lifetime? Discover your next destination and make every journey a tale of adventure.
             </p>
-            <button type="button" data-aos="zoom-in"
+            <Link to='/cities' data-aos="zoom-in"
               className="rounded-full border-2 font-poppins border-neutral-50 px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-neutral-50 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-neutral-100 hover:bg-opacity-10 hover:text-neutral-100 focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-200 active:text-neutral-200"
               data-te-ripple-init data-te-ripple-color="light">
-              <Link to='/cities'>
               Click Here!
-              </Link>
-            </button>
+            </Link>
           </div>
         </div>
       </div>
