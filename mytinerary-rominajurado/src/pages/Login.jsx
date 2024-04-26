@@ -5,6 +5,8 @@ import alerts from "../utils/alerts";
 import { useDispatch } from "react-redux";
 import {login} from '../redux/actions/userActions';
 import TokyoStation from "../assets/img/travel.jpg";
+import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from "jwt-decode";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -28,6 +30,26 @@ function Login() {
       if (!aux[key]) delete aux[key];
     }
     authQueries.login(aux).then((response) => {
+      console.log(response);
+      if (response.status == 200) {
+        dispatch(login(response.data));
+        alerts.success("Welcome " + response.data.first_name);
+        navigate("/");
+      } else {
+        alerts.error(response.statusMsg);
+      }
+    });
+  }
+  function loginInWithGoogle(response) {
+    console.log("Ok", response);
+    const userInfo = jwtDecode(response.credential);
+  
+    const data = {
+      email: userInfo.email,
+      password: String(Number(userInfo.sub) / 3).substring(0, 15),
+    };
+  
+    authQueries.login(data).then((response) => {
       console.log(response);
       if (response.status == 200) {
         dispatch(login(response.data));
@@ -90,10 +112,17 @@ function Login() {
         
         <input
           type="submit"
-          className="bg-teal-500 font-poppins hover:bg-teal-400 text-white h-10 rounded-lg font-medium text-lg px-8 cursor-pointer "
+          className="bg-teal-500 font-poppins hover:bg-teal-400 text-white h-10 rounded-lg font-medium text-lg px-8 cursor-pointer mb-4"
           value="Sign in"
         />
-       
+       <GoogleLogin 
+        size = 'large'
+         onSuccess={loginInWithGoogle}
+
+         onError={() => {
+          console.log("Error");
+         }}
+        />
       </form>
     </div>
   </main>

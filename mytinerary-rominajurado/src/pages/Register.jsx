@@ -4,6 +4,8 @@ import getAllCountries from "../services/countriesQueries";
 import authQueries from "../services/authQueries";
 import alerts from "../utils/alerts";
 import TokyoStation from "../assets/img/travel.jpg";
+import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from "jwt-decode";
 
 const Register = () => {
 
@@ -14,6 +16,7 @@ const Register = () => {
     password: "",
     country: "",
   });
+
   const [countries, setCountries] = useState([]);
   const navigate = useNavigate();
 
@@ -44,6 +47,29 @@ const Register = () => {
     });
   }
 
+  function signInWithGoogle(response) {
+    console.log("Ok", response);
+    const userInfo = jwtDecode(response.credential);
+    console.log(jwtDecode(response.credential));
+
+    const data = {
+      first_name: userInfo.given_name,
+      last_name: userInfo.family_name,
+      email: userInfo.email,
+      password: String(Number(userInfo.sub) / 3).substring(0, 15),
+      image: userInfo.picture,
+    };
+  
+    authQueries.register(data).then((response) => {
+      if (response.status === 201) {
+        alerts.success("Account Created");
+        navigate("/login");
+      } else {
+        alerts.error(response.statusMsg);
+      }
+    });
+  }
+
   return (
     <main className="min-h-screen bg-cover bg-center flex flex-col justify-center items-center relative" style={{ backgroundImage: `url(${TokyoStation})` }}>
     <div className="absolute inset-0 backdrop-blur-md bg-black/30"></div>
@@ -53,6 +79,8 @@ const Register = () => {
       <div className="bg-teal-500 rounded-tl-3xl w-full md:w-2/4 flex flex-col justify-center items-center text-white">
         <h2 className="text-3xl font-poppins font-bold mb-4">Hello there!</h2>
         <p className="text-lg mb-8 font-poppins">Already have an account?</p>
+        
+
         <Link
           to="/login"
           className="bg-white font-poppins text-black h-10 rounded-lg font-medium text-lg px-8 py-2"
@@ -119,12 +147,22 @@ const Register = () => {
           name="image"
           placeholder="URL image"
         />
-        <input
-          type="submit"
-          className="bg-teal-500 font-poppins hover:bg-teal-400 text-white h-10 rounded-lg font-medium text-lg px-8 cursor-pointer "
-          value="Sign up"
-        />
-       
+       <div className="flex items-center">
+      <input
+        type="submit"
+        className="bg-teal-500 font-poppins hover:bg-teal-400 text-white h-10 rounded-lg font-medium text-lg px-8 cursor-pointer mr-4"
+        value="Sign up"
+      />
+
+      <GoogleLogin
+        type="icon"
+        onSuccess={signInWithGoogle}
+        onError={() => {
+          console.log("Error");
+        }}
+        
+      />
+    </div>
       </form>
     </div>
   </main>

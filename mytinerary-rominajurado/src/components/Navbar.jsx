@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout } from '../redux/actions/userActions';
 import LogoutIcon from '@mui/icons-material/Logout';
 import MenuIcon from '@mui/icons-material/Menu';
-import userDefault from '../assets/img/user-icon.png'
+import userDefault from '../assets/img/defaultprofile.jpg';
 import { useState } from "react";
 
 
@@ -114,17 +114,15 @@ const NavBar = () => {
 										<img
 											src={user.image}
 											alt="Image-User"
-											className="w-11 h-11 object-cover"
+											className="w-11 h-11 object-cover rounded-full "
 										/>
 									) : (
 										<img
 											src={userDefault}
 											alt="Image-Default"
-											className="w-11 h-11 object-cover"
+											className="w-11 h-11 object-cover rounded-full"
 										/>
 									)}
-
-
 								</div>
 								<button
 									onClick={handleClick}
